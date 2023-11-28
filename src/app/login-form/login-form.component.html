@@ -1,0 +1,8 @@
+<div>
+    <h3>Felhasználónév</h3>
+    <input type="text" [(ngModel)]="username"/>
+    <h3>Jelszó</h3>
+    <input type="password"[(ngModel)]="password"/>
+    <button type="button"(click)="login()">Küldés</button>
+    <p class="error-message">{{messages.getLoginMessage()}}</p>
+</div>
