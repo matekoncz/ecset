@@ -30,7 +30,7 @@ jobs:
     #   run: npm run test:headless
 
     - name: Build
-      run: npm run build -- --base-href /ecset/
+      run: npm run build -- --base-href /ecset/ && pwd && ls -la ecset
 
     - name: Deploy
       if: success()
