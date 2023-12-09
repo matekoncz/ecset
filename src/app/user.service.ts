@@ -12,16 +12,19 @@ export class UserService{
 
   private LoggedIn?: boolean;
   private Currentuser?: Backendless.User;
-  constructor() {}
-
-  // alábbi kód idővel törlendő
-
-
-  //innen ok
+  public load?: boolean;
+  constructor() {
+    this.load=true;
+  }
 
   async loadUser(){
+    this.load=true;
     console.log("loading user")
-    this.Currentuser = await Backendless.UserService.getCurrentUser();
+    try{
+      this.Currentuser = await Backendless.UserService.getCurrentUser();
+    } catch{
+      this.Currentuser=undefined;
+    }
     if(this.Currentuser==undefined){
       console.log("no user")
       this.LoggedIn=false;
@@ -29,6 +32,7 @@ export class UserService{
       this.LoggedIn = true;
       console.log("user: "+this.Currentuser.username)
     }
+    this.load=false;
   }
 
   setCurrentUser(user: Backendless.User){
@@ -57,7 +61,7 @@ export class UserService{
   }
 
   getUserName(){
-    return this.Currentuser!.username;
+    return (this.Currentuser! as any).name;
   }
 
   logout(){

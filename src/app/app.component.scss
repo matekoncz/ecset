@@ -1,9 +1,18 @@
 .message-container{
     width: 70%; float: left; position: relative;
 }
+
+.message-container-mobile{
+    width: 100%;
+}
+
 .profile-container{
     width: 29%; float: left; position: relative;
     border-left: dodgerblue dotted 1px;
+}
+
+.profile-container-mobile{
+    width: 100%
 }
 a{
     text-align: center;
@@ -16,4 +25,40 @@ a{
     justify-content: center;
     flex-direction: column;
     padding-top: 20%;
+}
+
+.circle{
+    border-radius: 50%;
+    width: 6em;
+    height: 6em;
+    background-image: linear-gradient(red, dodgerblue);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    animation: spin 1s linear infinite;
+}
+.white-circle{
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+    position: absolute;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
 }

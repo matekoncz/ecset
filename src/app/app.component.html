@@ -1,14 +1,37 @@
 <h1>Elektronikus Csevegő tér</h1>
 <div>
-<div class="message-container">
-  <app-message-board *ngIf="userservice.isLoggedIn()"></app-message-board>
-  <app-login-form *ngIf="!userservice.isLoggedIn()"></app-login-form>
-</div>
-<div class="profile-container">
-  <app-profile *ngIf="userservice.isLoggedIn()"></app-profile>
-  <div *ngIf="!userservice.isLoggedIn()" class="advert">
-    <h2 >Nem rendelkezik ECSET fiókkal?</h2>
-    <a>Regisztráljon most!</a>
-  </div> 
-</div>
+  <ng-container *ngIf="!this.userservice.load; else loading">
+    <ng-container *ngIf="screen=='nagy'; else mobile">
+      <div class="message-container">
+        <app-message-board *ngIf="userservice.isLoggedIn()"></app-message-board>
+        <app-login-form *ngIf="!userservice.isLoggedIn()"></app-login-form>
+      </div>
+      <div class="profile-container">
+        <app-profile *ngIf="userservice.isLoggedIn();else reg"></app-profile>
+        <ng-template #reg class="advert">
+          <h2 >Nem rendelkezik ECSET fiókkal?</h2>
+          <a>Regisztráljon most!</a>
+        </ng-template> 
+      </div>
+    </ng-container>
+  
+    <ng-template #mobile>
+      <div class="profile-container-mobile">
+        <app-profile *ngIf="userservice.isLoggedIn();else reg"></app-profile>
+        <ng-template #reg class="advert">
+          <h2 >Nem rendelkezik ECSET fiókkal?</h2>
+          <a>Regisztráljon most!</a>
+        </ng-template> 
+      </div>
+      <div class="message-container-mobile">
+        <app-message-board *ngIf="userservice.isLoggedIn()"></app-message-board>
+        <app-login-form *ngIf="!userservice.isLoggedIn()"></app-login-form>
+      </div>
+    </ng-template>
+  </ng-container>
+  
+  <ng-template #loading>
+    <div class="circle"><div class="white-circle"></div></div>
+  </ng-template>
+
 </div>
