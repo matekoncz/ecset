@@ -1,8 +1,14 @@
-<div>
-    <div class="profile-pic-container">
+<div class="flex-column">
         <img class="profile-pic" src="https://soccerpointeclaire.com/wp-content/uploads/2021/06/default-profile-pic-e1513291410505.jpg" alt="profile">
-    </div>
-    <h3>{{this.userservice.getUserName()}}</h3>
+    <h3 *ngIf="!edit else editName" (click)="editProfile()" >{{name}}</h3>
+
+    <ng-template #editName>
+        <div class="flex-row">
+            <input type="text" [(ngModel)]="name"/>
+            <input type="button" class="name-submmit" (click)="changeName()" value="{{check}}">
+        </div>
+    </ng-template>
+
     <div class="button-div">
     <button type = button (click)="userservice.logout()"> Logout</button>
     </div>

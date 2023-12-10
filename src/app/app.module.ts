@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import Backendless from 'backendless';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageBoardComponent } from './message-board/message-board.component';
+import { serviceWorkerConfig } from 'src/wworker.config';
 
 const APP_ID = 'E740B979-B083-ED0C-FFD3-2EDE3126C400';
 const API_KEY = 'C1B30CED-2B0D-425D-BCD1-3A4C50A84765';
@@ -27,7 +28,7 @@ Backendless.initApp(APP_ID, API_KEY);
     LoginFormComponent,
     ProfileComponent,
     MessageBoardComponent,
-    ServiceWorkerModule.register('ngsw-worker.js', {
+    ServiceWorkerModule.register(serviceWorkerConfig.serviceWorkerUrl, {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).

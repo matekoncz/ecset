@@ -13,3 +13,27 @@
   align-items: center;
   justify-content: center;
 }
+
+.name-submmit{
+    background-color: rgb(150, 222, 150);
+    border-radius: 5%;
+    width: 100%;
+}
+
+.name-submit:hover{
+    background-color: green;
+}
+
+.flex-column{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-right: 25%;
+    padding-left: 25%;
+}
+.flex-row{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 1em;
+}

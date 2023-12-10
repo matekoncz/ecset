@@ -64,6 +64,11 @@ export class UserService{
     return (this.Currentuser! as any).name;
   }
 
+  async setUserName(name :string){
+    (this.Currentuser! as any).name = name;
+    await Backendless.UserService.update(this.Currentuser);
+  }
+
   logout(){
     this.LoggedIn=false;
     this.Currentuser=undefined;
