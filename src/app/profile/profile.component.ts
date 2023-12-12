@@ -16,7 +16,6 @@ export class ProfileComponent {
   loaded=false;
   upload=false;
   profile_pic?: String;
-  pic_num=0;
 
   constructor(public userservice: UserService){
     this.name=this.userservice.getUserName();
@@ -55,8 +54,14 @@ export class ProfileComponent {
 
   loadFile(event:any){
     console.log("elek")
-    this.getBase64(event.target.files[this.pic_num],(res: any)=>{this.profile_pic=res})
-    this.pic_num++;
+    this.getBase64(event.target.files[0],(res: any)=>{
+      if(res.length<21000){
+        this.profile_pic=res;
+      } else {
+        alert("A feltöltött kép túl nagy");
+        this.cancel();
+      }
+    })
     this.loaded=true;
   }
 

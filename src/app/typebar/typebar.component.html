@@ -3,6 +3,6 @@
             <textarea rows="3" cols="50" placeholder="Ide géplelje üzenetét" [(ngModel)]="message">
             </textarea>
             <button class="send" (click)="more()">{{emoticon?"-":"+"}}</button>
-        <button class="send">Küldés</button>
+        <button class="send" (click)="sendMessage()">Küldés</button>
     </div>
 </div>

@@ -16,6 +16,6 @@ export class MessageBoardComponent {
   private current = 0;
   public posts: Post[]=[];
   constructor(public postservice: PostService){
-    this.postservice.loadPosts(this.current).subscribe((posts)=>{this.posts=posts.reverse()});
+    this.postservice.forceLoad.subscribe((newposts)=>{this.posts=newposts.reverse(); console.log(" load to msg-board")});
   }
 }
