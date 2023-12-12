@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1702133238726,
+  "timestamp": 1702395877634,
   "index": "/ecset/index.html",
   "assetGroups": [
     {
@@ -13,11 +13,11 @@
       "urls": [
         "/ecset/favicon.ico",
         "/ecset/index.html",
-        "/ecset/main.598b0ce9dd8e63c5.js",
+        "/ecset/main.59f947664bf11a3a.js",
         "/ecset/manifest.webmanifest",
         "/ecset/polyfills.b29caec164d1728b.js",
         "/ecset/runtime.8cd573c3cdf67a16.js",
-        "/ecset/styles.036db8bb825e8a1f.css"
+        "/ecset/styles.bc3dede66285515f.css"
       ],
       "patterns": []
     },
@@ -41,7 +41,21 @@
       "patterns": []
     }
   ],
-  "dataGroups": [],
+  "dataGroups": [
+    {
+      "name": "backendless",
+      "patterns": [
+        "https:\\/\\/api\\.backendless\\.com\\/E740B979-B083-ED0C-FFD3-2EDE3126C400\\/C1B30CED-2B0D-425D-BCD1-3A4C50A84765\\/data\\/Users\\/44738C0C-CC03-4B65-ACEB-CEF7D7BF6484"
+      ],
+      "strategy": "freshness",
+      "maxSize": 11,
+      "maxAge": 90000000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
   "hashTable": {
     "/ecset/assets/icons/icon-128x128.png": "b1f06c7d714abb4a0cc4d1f7c954feb26826e4c4",
     "/ecset/assets/icons/icon-144x144.png": "96a0d629765c1bc85d9263c6bc83094ca776d267",
@@ -52,12 +66,12 @@
     "/ecset/assets/icons/icon-72x72.png": "279825a1ac4377032ae996a1832c641e33ccf1b6",
     "/ecset/assets/icons/icon-96x96.png": "592885efcbfee27e5e20be4fa3043589390d2740",
     "/ecset/favicon.ico": "e35d86ce38cbb9fbee538a07d65a3dc359028062",
-    "/ecset/index.html": "926cca0166746c2a675da0f7c7d9c1f3a3eb0425",
-    "/ecset/main.598b0ce9dd8e63c5.js": "1a171dfdbc944854cc1a3ca3d423fb3efe8722ca",
+    "/ecset/index.html": "73e1cb21aac30a129b7e43711212f692f14c5481",
+    "/ecset/main.59f947664bf11a3a.js": "7a4cb361fdda419da5f23b19e60623c72b9fe5ef",
     "/ecset/manifest.webmanifest": "6bb1e77f8fe31404d876b67e3a9818c97fa4e8dd",
     "/ecset/polyfills.b29caec164d1728b.js": "ce492712802d6db1ae23a964b06c5824630f8b3c",
     "/ecset/runtime.8cd573c3cdf67a16.js": "131c1d1885806097b0651a844985748215f35af2",
-    "/ecset/styles.036db8bb825e8a1f.css": "0c2a2465def6d13a754876bb6ba805454072ef4e"
+    "/ecset/styles.bc3dede66285515f.css": "2d5e499a40e1cb28cdc5540f3e8cb7e6ffd9ae3f"
   },
   "navigationUrls": [
     {
