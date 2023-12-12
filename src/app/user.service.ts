@@ -74,4 +74,13 @@ export class UserService{
     this.Currentuser=undefined;
     Backendless.UserService.logout();
   }
+
+  getProfilePic(){
+    return (this.Currentuser! as any).avatar;
+}
+
+  async setProfilePic(url: String){
+    (this.Currentuser! as any).avatar=url;
+    await Backendless.UserService.update(this.Currentuser);
+  }
 }

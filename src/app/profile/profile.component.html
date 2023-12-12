@@ -1,6 +1,14 @@
 <div class="flex-column">
-        <img class="profile-pic" src="https://soccerpointeclaire.com/wp-content/uploads/2021/06/default-profile-pic-e1513291410505.jpg" alt="profile">
-    <h3 *ngIf="!edit else editName" (click)="editProfile()" >{{name}}</h3>
+        <img (click)="changeImage()" class="profile-pic" [src]="profile_pic" alt="profile">
+        <div *ngIf="upload" class="flex-row">
+            <form id="pic-form">
+                <label for="file" class="file-label" *ngIf="upload && !loaded">kép feltöltése</label>
+                <input type="file" accept="image/*" name="image" id="file" style="display: none;" (change)="loadFile($event)"/>
+                <input *ngIf="upload && loaded" type="button" class="name-submmit" (click)="upLoadImage()" value="{{check}}">
+                <input *ngIf="upload && loaded" type="button" class="cancel" (click)="cancel()" value="X">
+            </form>
+        </div>
+        <h3 *ngIf="!edit else editName" (click)="editProfile()" >{{name}}</h3>    
 
     <ng-template #editName>
         <div class="flex-row">

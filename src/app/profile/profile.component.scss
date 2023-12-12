@@ -37,3 +37,20 @@
     flex-direction: row;
     padding: 1em;
 }
+
+.cancel{
+    color:white;
+    background-color: red;
+    border-radius: 5%;
+    width: 100%;
+}
+.cancel:hover{
+    color: darkred;
+}
+
+.file-label{
+    cursor: pointer;
+    border: 3px solid dodgerblue;
+    border-radius: 5%;
+    padding: 2px
+}
