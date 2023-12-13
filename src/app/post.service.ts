@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Post } from './post';
-import { from, ReplaySubject } from 'rxjs';
+import { catchError, from, ReplaySubject } from 'rxjs';
+import { DatabaseService } from './database.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
   public forceLoad;
-  constructor() {
+  constructor(public database: DatabaseService) {
     this.forceLoad = new ReplaySubject<Post[]>();
     console.log("init p-service")
-    this.loadPosts(0).subscribe((p)=>this.forceLoad.next(p));
+    this.loadPosts(0).pipe(catchError(()=>this.database.getPostsFromDB())).subscribe((p)=>this.forceLoad.next(p));
   }
 
   loadPosts(n: number){

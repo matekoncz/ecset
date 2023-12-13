@@ -1,1 +1,9 @@
-<p>{{post.content}}</p>
+<div [className]="me?'me':'not_me'">
+<img [src]="picurl" class="small-pic">{{name}}
+    <div class="message">
+        <p>{{post.content}}</p>
+    </div>
+</div>
+<br/>
+
+

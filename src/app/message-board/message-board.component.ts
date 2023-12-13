@@ -4,6 +4,7 @@ import { PostService } from '../post.service';
 import { Post } from '../post';
 import { PostComponent } from '../post/post.component';
 import { NgFor } from '@angular/common';
+import { DatabaseService } from '../database.service';
 
 @Component({
   standalone: true,
@@ -15,7 +16,7 @@ import { NgFor } from '@angular/common';
 export class MessageBoardComponent {
   private current = 0;
   public posts: Post[]=[];
-  constructor(public postservice: PostService){
-    this.postservice.forceLoad.subscribe((newposts)=>{this.posts=newposts.reverse(); console.log(" load to msg-board")});
+  constructor(public postservice: PostService,public database: DatabaseService){
+    this.postservice.forceLoad.subscribe((newposts)=>{this.posts=newposts; console.log(" load to msg-board");this.database.savePosts(this.posts)});
   }
 }

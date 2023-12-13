@@ -1,3 +1,3 @@
 <h2>Üzenetek</h2>
-<post-component *ngFor="let post of posts" [post]="post"></post-component>
+<post-component *ngFor="let post of posts.reverse()" [post]="post"></post-component>
 <app-typebar></app-typebar>

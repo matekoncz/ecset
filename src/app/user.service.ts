@@ -1,7 +1,7 @@
 import { Injectable, Output, EventEmitter, OnInit } from '@angular/core';
-import { registered_users } from './mock-users';
-import { Observable } from 'rxjs';
+import { Observable, from, pipe, map, catchError, tap} from 'rxjs';
 import { outputAst } from '@angular/compiler';
+import { DatabaseService } from './database.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +10,26 @@ export class UserService{
 
   @Output() loginEvent = new EventEmitter;
 
+  users!: Promise<Backendless.User[]>;
+  usersById!: Observable<{[key:string]:Backendless.User}>
   private LoggedIn?: boolean;
   private Currentuser?: Backendless.User;
   public load?: boolean;
-  constructor() {
+  usersByIdResolver!: (value: { [key: string]: Backendless.User; } | PromiseLike<{ [key: string]: Backendless.User; }>) => void;
+  constructor(public database: DatabaseService) {
     this.load=true;
+    this.users= Backendless.Data.of('Users').find();
+    this.usersById=from(this.users).pipe(catchError(()=>{return this.database.getUsersFromDB()})).pipe(tap((u)=>{this.database.saveUsers(u)})).pipe(map((res)=>{
+      let dict: {[key: string]:Backendless.User} ={};
+      res.forEach(element => {
+        dict[element.objectId!]=element;
+      });
+      return dict;
+    }))
+  }
+
+  getUserbyId(id: string){
+    return this.usersById.pipe(map((res)=>{return res[id]}))
   }
 
   async loadUser(){
