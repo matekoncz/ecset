@@ -1,7 +1,11 @@
 <div [className]="me?'me':'not_me'">
-<img [src]="picurl" class="small-pic">{{name}}
+    <div>
+        <div class="pic-con">
+            <img [src]="picurl" class="small-pic">{{name}}
+        </div>
     <div class="message">
         <p>{{post.content}}</p>
+    </div>
     </div>
 </div>
 <br/>

@@ -6,12 +6,14 @@
     width: max-content;
     margin: 1px;
 }
-.me{
-    display:block;
-    margin-left:auto;
+.me, .me .pic-con{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
-.me div{
+.me .message{
+    
     background-color: darkblue;
     color: white;
 }
