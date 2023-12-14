@@ -6,3 +6,6 @@
         <button class="send" (click)="sendMessage()">Küldés</button>
     </div>
 </div>
+<div *ngIf="emoticon">
+    <app-emoji></app-emoji>
+</div>

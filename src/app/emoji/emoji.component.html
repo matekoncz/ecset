@@ -1,0 +1,3 @@
+<div class="emoji-container">
+    <img *ngFor="let emoji of emojis" [src]="emojiservice.getUrl(emoji)" (click)="this.emojiservice.sendEmoji(emoji)"/>
+</div>

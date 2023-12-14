@@ -4,7 +4,10 @@
             <img [src]="picurl" class="small-pic">{{name}}
         </div>
     <div class="message">
-        <p>{{post.content}}</p>
+        <span *ngFor="let part of post.content.split('#')" class="content">
+            <img *ngIf="emojiservice.emojis.includes(part)" [src]="emojiservice.getUrl(part)" class="emoji">
+            <span *ngIf="!emojiservice.emojis.includes(part)">{{part}}</span>
+        </span>
     </div>
     </div>
 </div>

@@ -9,8 +9,7 @@
       <div class="profile-container">
         <app-profile *ngIf="userservice.isLoggedIn();else reg"></app-profile>
         <ng-template #reg class="advert">
-          <h2 >Nem rendelkezik ECSET fiókkal?</h2>
-          <a>Regisztráljon most!</a>
+          <h2 >Kérjük, jelentkezzen be a további funkciók eléréséhez</h2>
         </ng-template> 
       </div>
     </ng-container>
@@ -19,8 +18,7 @@
       <div class="profile-container-mobile">
         <app-profile *ngIf="userservice.isLoggedIn();else reg"></app-profile>
         <ng-template #reg class="advert">
-          <h2 >Nem rendelkezik ECSET fiókkal?</h2>
-          <a>Regisztráljon most!</a>
+          <h2 >Kérjük, jelentkezzen be a további funkciók eléréséhez</h2>
         </ng-template> 
       </div>
       <div class="message-container-mobile">

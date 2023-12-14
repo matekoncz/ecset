@@ -1,0 +1,16 @@
+.emoji-container{
+    margin: 1em;
+    border: solid 2px grey;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    justify-content: space-evenly;
+}
+
+.emoji-container img{
+    width: 2em;
+    height: 2em;
+    border-radius: 20%;
+    border: solid 2px dodgerblue;
+}

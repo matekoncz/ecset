@@ -4,11 +4,12 @@ import { Input } from '@angular/core';
 import { Post } from '../post';
 import { UserService } from '../user.service';
 import{Observable, tap} from 'rxjs';
-import { NgIf } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
+import { EmojiService } from '../emoji.service';
 @Component({
   selector: 'post-component',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,NgIf,NgFor],
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
@@ -21,7 +22,8 @@ export class PostComponent implements OnInit{
   me: Boolean=false;
 
 
-  constructor(public userservice: UserService){
+  constructor(public userservice: UserService, public emojiservice: EmojiService){
+    
   }
 
   ngOnInit(): void {
