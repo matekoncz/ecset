@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Post } from './post';
-import { Subject } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,9 @@ import { Subject } from 'rxjs';
 export class DatabaseService {
 
 db!: IDBDatabase;
+  initialized: ReplaySubject<boolean>;
   constructor() {
+    this.initialized=new ReplaySubject<boolean>();
     const request = indexedDB.open('paletta');
     request.onerror = (event) => {
       console.error("pacas lett a paletta");
@@ -24,6 +26,7 @@ db!: IDBDatabase;
         this.db.createObjectStore("posts");
         this.db.createObjectStore("users")
     };
+    this.initialized.next(true);
   }
 
   savePosts(p:Post[]){
@@ -42,6 +45,21 @@ db!: IDBDatabase;
   saveUsers(u:Backendless.User[]){
     const t = this.db.transaction("users",'readwrite');
     t.objectStore("users").put(u,"all_users");
+  }
+
+  saveCurrentUser(u:Backendless.User){
+    console.log("saving currentuser")
+    const t = this.db.transaction("users",'readwrite');
+    t.objectStore("users").put(u,"currentuser");
+  }
+
+  getCurrentUserFromDB(){
+    console.log("inside get currentuser")
+    const t=this.db.transaction("users",'readonly');
+    const reqest = t.objectStore("users").get("currentuser");
+    const s = new Subject<Backendless.User>();
+    reqest.onsuccess=(event: any)=>{s.next(event.target.result)}
+    return s;
   }
 
   getUsersFromDB(){

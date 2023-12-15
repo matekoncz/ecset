@@ -16,7 +16,7 @@ export class UserService{
   private Currentuser?: Backendless.User;
   public load?: boolean;
   usersByIdResolver!: (value: { [key: string]: Backendless.User; } | PromiseLike<{ [key: string]: Backendless.User; }>) => void;
-  constructor(public database: DatabaseService) {
+  constructor(public database: DatabaseService) { 
     this.load=true;
     this.users= Backendless.Data.of('Users').find();
     this.usersById=from(this.users).pipe(catchError(()=>{return this.database.getUsersFromDB()})).pipe(tap((u)=>{this.database.saveUsers(u)})).pipe(map((res)=>{
@@ -37,10 +37,27 @@ export class UserService{
     console.log("loading user")
     try{
       this.Currentuser = await Backendless.UserService.getCurrentUser();
+      console.log("backendless answered")
+      this.database.saveCurrentUser(this.Currentuser!);
     } catch{
       this.Currentuser=undefined;
     }
     if(this.Currentuser==undefined){
+      console.log("from db")
+      this.database.initialized.subscribe(()=>{
+        this.database.getCurrentUserFromDB().subscribe((val)=>{
+          if(val!=undefined){
+            console.log("user found")
+            this.Currentuser=val;
+            this.LoggedIn = true;
+          } else {
+            console.log("no user found")
+            this.LoggedIn=false;
+          }
+          console.log("finish load")
+          this.load=false;
+        })
+      })
       console.log("no user")
       this.LoggedIn=false;
     } else {
@@ -52,12 +69,14 @@ export class UserService{
 
   setCurrentUser(user: Backendless.User){
     this.Currentuser=user;
+    this.database.saveCurrentUser(this.Currentuser!);
   }
 
   async login(username: string, password: string){
       try {
         const currentUser = await Backendless.UserService.login(username, password, true)
         this.Currentuser= currentUser;
+        this.database.saveCurrentUser(this.Currentuser!);
         console.log(currentUser, this.Currentuser);
         this.LoggedIn=true;
         //this.loginEvent.emit(currentUser)
@@ -81,6 +100,7 @@ export class UserService{
 
   async setUserName(name :string){
     (this.Currentuser! as any).name = name;
+    this.database.saveCurrentUser(this.Currentuser!);
     await Backendless.UserService.update(this.Currentuser);
   }
 
@@ -96,6 +116,7 @@ export class UserService{
 
   async setProfilePic(url: String){
     (this.Currentuser! as any).avatar=url;
+    this.database.saveCurrentUser(this.Currentuser!);
     await Backendless.UserService.update(this.Currentuser);
   }
 }
