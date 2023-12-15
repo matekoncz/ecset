@@ -6,7 +6,9 @@
     <div class="message">
         <span *ngFor="let part of post.content.split('#')" class="content">
             <img *ngIf="emojiservice.emojis.includes(part)" [src]="emojiservice.getUrl(part)" class="emoji">
-            <span *ngIf="!emojiservice.emojis.includes(part)">{{part}}</span>
+            <span *ngIf="!emojiservice.emojis.includes(part)">
+                <span *ngFor="let word of part.split(' ')">{{word+" "}}</span>
+            </span>
         </span>
     </div>
     </div>

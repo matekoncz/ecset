@@ -4,10 +4,12 @@
     padding: 0.5em;
     width: max-content;
     margin: 1px;
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
 }
 .me, .me .pic-con{
     display: flex;
-    padding-right: 1em;
     flex-direction: row;
     justify-content: flex-end;
 }
