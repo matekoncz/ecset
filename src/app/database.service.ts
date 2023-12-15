@@ -53,6 +53,12 @@ db!: IDBDatabase;
     t.objectStore("users").put(u,"currentuser");
   }
 
+  deleteCurrentUser(){
+    console.log("delete currentuser")
+    const t = this.db.transaction("users",'readwrite');
+    t.objectStore("users").delete("currentuser");
+  }
+
   getCurrentUserFromDB(){
     console.log("inside get currentuser")
     const t=this.db.transaction("users",'readonly');

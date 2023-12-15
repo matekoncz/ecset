@@ -107,6 +107,7 @@ export class UserService{
   logout(){
     this.LoggedIn=false;
     this.Currentuser=undefined;
+    this.database.deleteCurrentUser();
     Backendless.UserService.logout();
   }
 
