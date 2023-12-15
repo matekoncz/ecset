@@ -1,6 +1,6 @@
 {
-  "name": "angular-ecset",
-  "short_name": "angular-ecset",
+  "name": "ecset",
+  "short_name": "ecset",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
